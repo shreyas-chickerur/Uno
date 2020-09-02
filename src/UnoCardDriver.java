@@ -6,6 +6,8 @@ public class UnoCardDriver {
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+		UnoCard firstCard = new UnoCard();
+		UnoCard topCard = firstCard;
 		int playerChoice;
 		UnoCard cardPlayed;
 		int counter = 0;
@@ -26,17 +28,24 @@ public class UnoCardDriver {
 		//for(int i = 0; i < computer.size(); i++) {
 			//System.out.print(computer.get(i) + " ");
 		//}
-		UnoCard randomCard = new UnoCard();
-		System.out.println("The card laying face up is: " + randomCard);
-		System.out.print("What card are you going to play, or type 0 to draw a card? ");
-		playerChoice = sc.nextInt();
-		if(playerChoice == 0) {
-			player.add(new UnoCard());
-		} else if (playerChoice > 0 && playerChoice < player.size()) {
-			cardPlayed = player.remove(playerChoice);
-			System.out.println("You laid down " + cardPlayed);
-		} else {
-			System.out.println("Please enter a valid card!");
+		while(player.size() > 0) {
+			System.out.println("The card laying face up is: " + topCard);
+			System.out.print("What card are you going to play, or type 0 to draw a card? ");
+			playerChoice = sc.nextInt();
+			if(playerChoice == 0) {
+				player.add(new UnoCard());
+			} else if (playerChoice > 0 && playerChoice < player.size()) {
+				cardPlayed = player.remove(playerChoice);
+				if(firstCard.toString().charAt(0) == cardPlayed.toString().charAt(0) || firstCard.toString().charAt(1) == cardPlayed.toString().charAt(1)) {
+					topCard = cardPlayed;
+					System.out.println("You laid down " + cardPlayed);
+				} else {
+					System.out.println("Please enter a valid card!");
+				}
+				
+			} else {
+				System.out.println("Please enter a valid card!");
+			}
 		}
 		
 	}
