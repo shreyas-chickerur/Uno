@@ -5,4 +5,4 @@
   - Classes: UnoCard, UnoCardDriver
   - Features to add: fix case - player enters an invalid index for card
   - To run: run UnoCardDriver
-  - Requirements: Eclipse IDE
+  - Requirements: JRE, JDK
