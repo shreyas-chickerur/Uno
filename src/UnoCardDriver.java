@@ -10,6 +10,7 @@ public class UnoCardDriver {
 		UnoCard topCard = firstCard;
 		int playerChoice;
 		UnoCard cardPlayed;
+		UnoCard computerCardPlayed;
 		int counter = 0;
 		for(int i = 0; i < 7; i++) {
 			player.add(new UnoCard());
@@ -19,13 +20,16 @@ public class UnoCardDriver {
 		//for(int i = 0; i < computer.size(); i++) {
 			//System.out.print(computer.get(i) + " ");
 		//}
-		while(player.size() > 0) {
+		while(player.size() > 0 || computer.size() > 0) {
+			//player loop
 			System.out.println("Here is your hand");
 			for(int i = 0; i < player.size();i++) {
+				//prints out the indexes of the cards
 				System.out.print((i + 1) + "  ");
 			}
 			System.out.println();
 			for(int i = 0; i < player.size(); i++) {
+				//prints out the cards themselves
 				System.out.print(player.get(i) + " ");
 			}
 			System.out.println();
@@ -46,7 +50,26 @@ public class UnoCardDriver {
 			} else {
 				System.out.println("Please enter a valid card!");
 			}
+			
+			//computer loop
+			for(int i = 0; i < computer.size(); i++) {
+				//goes through computer hand, checking for compatible card
+				UnoCard computerCard = computer.get(i);
+				//if they match, remove the UnoCard object from the computer's hand
+				if(topCard.toString().charAt(0) == computerCard.toString().charAt(0) || topCard.toString().charAt(1) == computerCard.toString().charAt(1)) {
+					computerCardPlayed = computer.remove(i);
+					System.out.println("Computer Played: " + computerCardPlayed);
+					break;
+				}
+			}
+			System.out.println("The computer has " + computer.size() + " cards");
 			System.out.println();
+		}
+		System.out.println("Game Over!");
+		if(player.size() == 0) {
+			System.out.println("Congratulations! You Won!");
+		} else {
+			System.out.println("You Lost!");
 		}
 		
 	}
