@@ -61,6 +61,9 @@ public class UnoCardDriver {
 					System.out.println("Computer Played: " + computerCardPlayed);
 					break;
 				}
+				if(i == computer.size() - 1) {
+					computer.add(new UnoCard());
+				}
 			}
 			System.out.println("The computer has " + computer.size() + " cards");
 			System.out.println();
